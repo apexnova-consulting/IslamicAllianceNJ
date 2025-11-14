@@ -205,7 +205,7 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
                 Explore Our Impact
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Discover how we're making a difference in the community
+                Discover how we&apos;re making a difference in the community
               </p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
@@ -244,7 +244,7 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
               className="text-center mb-16"
             >
               <div className="inline-block glass px-6 py-2 rounded-full mb-6">
-                <span className="text-sm font-semibold gradient-text">What's Next</span>
+                <span className="text-sm font-semibold gradient-text">What&apos;s Next</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-heading font-bold gradient-text mb-4">
                 Upcoming Events
