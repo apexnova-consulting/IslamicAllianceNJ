@@ -71,9 +71,11 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: var(--font-body), sans-serif;
   }
   body {
-    @apply text-foreground font-body;
+    @apply text-foreground;
+    font-family: var(--font-body), sans-serif;
     font-feature-settings: 'rlig' 1, 'calt' 1;
     background: linear-gradient(180deg, #F7F6F3 0%, #FFFFFF 50%, #F7F6F3 100%);
     min-height: 100vh;
@@ -84,7 +86,11 @@
   h4,
   h5,
   h6 {
-    @apply font-heading;
+    font-family: var(--font-body), sans-serif;
+    font-weight: 600;
+  }
+  button, a, input, textarea, select {
+    font-family: var(--font-body), sans-serif;
   }
 }
 

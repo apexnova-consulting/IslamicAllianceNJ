@@ -24,20 +24,17 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
   return (
     <div className="min-h-screen">
       {/* Full-Screen Hero with Logo Image */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Hero Image Background */}
-        <div className="absolute inset-0">
-          <Image
-            src="/hero-logo.jpg"
-            alt="Islamic Alliance - Ummah in Action"
-            fill
-            className="object-cover"
-            priority
-            quality={100}
-          />
-          {/* Subtle overlay for better readability if needed */}
-          <div className="absolute inset-0 bg-navy/10" />
-        </div>
+      <section 
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: 'url(/hero-logo.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Subtle overlay for better readability if needed */}
+        <div className="absolute inset-0 bg-navy/5" />
         
         {/* Scroll Indicator */}
         <motion.div
