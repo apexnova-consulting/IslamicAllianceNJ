@@ -23,7 +23,7 @@
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 153 81% 19%;
-    --radius: 0.5rem;
+    --radius: 1rem;
     --chart-1: 153 81% 19%;
     --chart-2: 33 46% 60%;
     --chart-3: 210 40% 80%;
@@ -32,13 +32,51 @@
   }
 }
 
+@layer utilities {
+  /* Modern Glassmorphism */
+  .glass {
+    @apply backdrop-blur-xl bg-white/70 border border-white/20 shadow-glass;
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-xl bg-primary/10 border border-white/10 shadow-glass;
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/80 border border-white/30 shadow-elegant rounded-2xl;
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:shadow-glass-lg hover:scale-[1.02] hover:-translate-y-1;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Animated Gradient Background */
+  .animated-gradient {
+    background: linear-gradient(270deg, #0F5132, #167D4A, #C69C6D);
+    background-size: 600% 600%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Floating Animation */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply text-foreground font-body;
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    background: linear-gradient(180deg, #F7F6F3 0%, #FFFFFF 50%, #F7F6F3 100%);
+    min-height: 100vh;
   }
   h1,
   h2,
@@ -79,5 +117,18 @@ html {
   animation: shimmer 2s infinite linear;
   background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
   background-size: 1000px 100%;
+}
+
+/* Gradient Shift Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 

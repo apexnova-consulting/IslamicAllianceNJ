@@ -53,45 +53,48 @@ export function Header({
       {/* Main Header */}
       <header
         className={cn(
-          'sticky top-0 z-40 w-full transition-all duration-300',
-          scrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-white'
+          'sticky top-0 z-40 w-full transition-all duration-500',
+          scrolled 
+            ? 'glass shadow-elegant border-b border-white/20' 
+            : 'bg-white/60 backdrop-blur-md'
         )}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2 group">
               {logo?.asset ? (
                 <Image
                   src={logo.asset._ref}
                   alt={logo.alt || 'Islamic Alliance Logo'}
                   width={200}
                   height={60}
-                  className="h-14 w-auto"
+                  className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (
-                <span className="text-2xl font-heading font-bold text-primary">
+                <span className="text-2xl font-heading font-bold gradient-text">
                   Islamic Alliance
                 </span>
               )}
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8" aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center space-x-1" aria-label="Main navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                  className="relative px-4 py-2 text-sm font-medium text-foreground rounded-lg transition-all duration-300 hover:text-primary hover:bg-primary/5 group"
                 >
-                  {link.label}
+                  <span className="relative z-10">{link.label}</span>
+                  <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
               ))}
             </nav>
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Button asChild variant="default" size="lg">
+              <Button asChild variant="default" size="lg" className="shadow-glow hover:shadow-float transition-all duration-300">
                 <Link href={donateUrl}>Donate Now</Link>
               </Button>
             </div>
@@ -111,19 +114,19 @@ export function Header({
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t bg-white">
-            <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4" aria-label="Mobile navigation">
+          <div className="lg:hidden border-t border-white/20 glass animate-slide-up">
+            <nav className="container mx-auto px-4 py-6 flex flex-col space-y-2" aria-label="Mobile navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium text-foreground hover:text-primary transition-colors py-2"
+                  className="text-base font-medium text-foreground hover:text-primary transition-all duration-300 py-3 px-4 rounded-lg hover:bg-primary/5"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button asChild variant="default" size="lg" className="w-full">
+              <Button asChild variant="default" size="lg" className="w-full mt-4 shadow-glow">
                 <Link href={donateUrl}>Donate Now</Link>
               </Button>
             </nav>
