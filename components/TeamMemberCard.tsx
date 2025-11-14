@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
 interface TeamMemberCardProps {
   name: string;
   title: string;
-  photo: {
+  photo?: {
     asset: { url?: string };
     alt?: string;
   };

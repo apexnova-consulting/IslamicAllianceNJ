@@ -199,16 +199,16 @@ export function AboutPage({ programs, initiatives, team }: AboutPageProps) {
                     {team.map((member: any) => {
                       const photoUrl = member.photo?.asset
                         ? urlForImage(member.photo).url()
-                        : null;
+                        : undefined;
                       return (
                         <TeamMemberCard
                           key={member._id}
                           name={member.name}
                           title={member.title}
-                          photo={{
+                          photo={photoUrl ? {
                             asset: { url: photoUrl },
                             alt: member.photo?.alt || `Photo of ${member.name}`,
-                          }}
+                          } : undefined}
                           bio={member.bio}
                           linkedinUrl={member.linkedinUrl}
                           facebookUrl={member.facebookUrl}

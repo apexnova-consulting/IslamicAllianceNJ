@@ -131,16 +131,16 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
               {tiles.map((tile: any, index: number) => {
                 const imageUrl = tile.image?.asset
                   ? urlForImage(tile.image).url()
-                  : null;
+                  : undefined;
                 return (
                   <TileCard
                     key={tile.title}
                     title={tile.title}
                     description={tile.description}
-                    image={{
+                    image={imageUrl ? {
                       asset: { url: imageUrl },
                       alt: tile.image?.alt || tile.title,
-                    }}
+                    } : undefined}
                     targetUrl={tile.targetUrl}
                     index={index}
                   />
@@ -173,7 +173,7 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
               {featuredEvents.map((event: any) => {
                 const imageUrl = event.flyerImage?.asset
                   ? urlForImage(event.flyerImage).url()
-                  : null;
+                  : undefined;
                 return (
                   <EventCard
                     key={event.slug.current}
@@ -181,10 +181,10 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
                     slug={event.slug.current}
                     dateTime={event.dateTime}
                     location={event.location}
-                    flyerImage={{
+                    flyerImage={imageUrl ? {
                       asset: { url: imageUrl },
                       alt: event.flyerImage?.alt || event.title,
-                    }}
+                    } : undefined}
                     featured={event.featured}
                   />
                 );

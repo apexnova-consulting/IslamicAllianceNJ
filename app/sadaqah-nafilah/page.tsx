@@ -36,7 +36,7 @@ export default function SadaqahNafilahPage() {
               How Your Contribution Helps
             </h3>
             <p className="text-lg leading-relaxed mb-4">
-              Your Sadaqah Nafilah contributions support Islamic Alliance's mission to:
+              Your Sadaqah Nafilah contributions support Islamic Alliance&apos;s mission to:
             </p>
             <ul className="space-y-2 mb-6">
               <li>Provide educational resources and mentorship programs</li>
@@ -62,9 +62,9 @@ export default function SadaqahNafilahPage() {
             </div>
 
             <p className="text-sm text-muted-foreground italic">
-              "The example of those who spend their wealth in the way of Allah is like a seed [of
+              &ldquo;The example of those who spend their wealth in the way of Allah is like a seed [of
               grain] which grows seven spikes; in each spike is a hundred grains. And Allah
-              multiplies [His reward] for whom He wills." - Quran 2:261
+              multiplies [His reward] for whom He wills.&rdquo; - Quran 2:261
             </p>
           </div>
         </div>

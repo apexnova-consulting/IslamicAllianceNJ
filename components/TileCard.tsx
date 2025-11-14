@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
 interface TileCardProps {
   title: string;
   description: string;
-  image: {
+  image?: {
     asset: { url?: string };
     alt?: string;
   };

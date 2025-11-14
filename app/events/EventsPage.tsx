@@ -71,7 +71,7 @@ export function EventsPage({ allEvents, upcomingEvents }: EventsPageProps) {
               {displayEvents.map((event: any, index: number) => {
                 const imageUrl = event.flyerImage?.asset
                   ? urlForImage(event.flyerImage).url()
-                  : null;
+                  : undefined;
                 return (
                   <motion.div
                     key={event._id}
@@ -85,10 +85,10 @@ export function EventsPage({ allEvents, upcomingEvents }: EventsPageProps) {
                       slug={event.slug.current}
                       dateTime={event.dateTime}
                       location={event.location}
-                      flyerImage={{
+                      flyerImage={imageUrl ? {
                         asset: { url: imageUrl },
                         alt: event.flyerImage?.alt || event.title,
-                      }}
+                      } : undefined}
                       featured={event.featured}
                     />
                   </motion.div>

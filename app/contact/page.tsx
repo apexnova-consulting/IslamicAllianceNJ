@@ -16,7 +16,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-xl text-muted-foreground">
-              We are here to help and answer any questions you may have. Reach out to us and we'll respond as soon as possible.
+              We are here to help and answer any questions you may have. Reach out to us and we&apos;ll respond as soon as possible.
             </p>
           </div>
         </div>

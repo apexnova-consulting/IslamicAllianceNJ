@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { urlForImage } from '@/lib/sanity.image';
@@ -49,7 +50,7 @@ export function ShopPage({ items }: ShopPageProps) {
                   Coming Soon!
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  We're working on bringing you high-quality Islamic Alliance merchandise including hoodies, t-shirts, and more. Check back soon!
+                  We&apos;re working on bringing you high-quality Islamic Alliance merchandise including hoodies, t-shirts, and more. Check back soon!
                 </p>
                 <div className="space-y-4 text-left max-w-md mx-auto">
                   <div className="border-b pb-4">
@@ -62,12 +63,12 @@ export function ShopPage({ items }: ShopPageProps) {
                   <div>
                     <p className="text-sm text-muted-foreground">
                       For any inquiries, please{' '}
-                      <a
+                      <Link
                         href="/contact"
                         className="text-primary hover:text-accent transition-colors underline"
                       >
                         contact us
-                      </a>
+                      </Link>
                       .
                     </p>
                   </div>
@@ -116,7 +117,7 @@ export function ShopPage({ items }: ShopPageProps) {
                           asChild={item.active}
                         >
                           {item.active ? (
-                            <a href="/contact">Order Now</a>
+                            <Link href="/contact">Order Now</Link>
                           ) : (
                             <span>Coming Soon</span>
                           )}

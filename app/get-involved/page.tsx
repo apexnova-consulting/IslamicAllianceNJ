@@ -27,7 +27,7 @@ export default function GetInvolvedPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              At Islamic Alliance, we believe in the power of community. Whether you're a student, professional, or simply someone who wants to make a difference, there's a place for you on our team. Join us in our mission to empower the Ummah through education, mentorship, and networking.
+              At Islamic Alliance, we believe in the power of community. Whether you&apos;re a student, professional, or simply someone who wants to make a difference, there&apos;s a place for you on our team. Join us in our mission to empower the Ummah through education, mentorship, and networking.
             </p>
           </div>
         </div>
@@ -42,7 +42,7 @@ export default function GetInvolvedPage() {
                 Volunteer Application
               </h2>
               <p className="text-muted-foreground mb-6">
-                Fill out the form below and we'll get in touch with you about volunteer opportunities.
+                Fill out the form below and we&apos;ll get in touch with you about volunteer opportunities.
               </p>
               <VolunteerForm />
             </div>
