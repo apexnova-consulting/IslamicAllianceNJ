@@ -64,9 +64,9 @@ sk4oqidy9oN7G3EdbYKpSod9U3lYZyVoyuoVVv6N7PSgwpVYNYEAM66LoB4BImudAKkV8yZZTLfbQNYN
 2. Click "Create API Key"
 3. Name: "Islamic Alliance Website - Production"
 4. Permissions: Full Access (or Send Access)
-5. **Copy the API key immediately** - it won't be shown again
-
-**Note:** With the free tier, you get 100 emails/day which is perfect for contact/volunteer forms!
+  5. **Copy the API key immediately** - it won't be shown again
+  
+  **Note:** With the free tier, you get 100 emails/day which is perfect for contact/volunteer forms!
 
 ## Step 3: GitHub Repository
 
