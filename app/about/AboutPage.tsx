@@ -18,35 +18,44 @@ interface AboutPageProps {
 export function AboutPage({ programs, initiatives, team }: AboutPageProps) {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-accent/10">
-        <div className="container mx-auto px-4">
+      {/* Modern Hero Section */}
+      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-navy-dark via-navy to-primary">
+        <div className="absolute inset-0 bg-geometric-pattern opacity-10" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-gold/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-primary mb-6">
+            <div className="inline-block glass px-6 py-2 rounded-full mb-8">
+              <span className="text-sm font-semibold text-gold">Who We Are</span>
+            </div>
+            <h1 className="text-6xl md:text-7xl font-heading font-bold text-white mb-6 drop-shadow-lg">
               About Us
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Our Mission and Values
+            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-gold via-accent to-gold rounded-full mb-8" />
+            <p className="text-xl md:text-2xl text-white/90 font-light">
+              Our Mission, Values & Community
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Tabs Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      {/* Modern Tabs Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-sand/30 to-white" />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <Tabs defaultValue="mission" className="w-full">
-            <div className="flex justify-center mb-12">
-              <TabsList className="grid w-full max-w-2xl grid-cols-4">
-                <TabsTrigger value="mission">Mission</TabsTrigger>
-                <TabsTrigger value="programs">Programs</TabsTrigger>
-                <TabsTrigger value="story">Our Story</TabsTrigger>
-                <TabsTrigger value="team">Team</TabsTrigger>
+            <div className="flex justify-center mb-16">
+              <TabsList className="glass-card p-2 grid w-full max-w-3xl grid-cols-4 gap-2">
+                <TabsTrigger value="mission" className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-float transition-all duration-300">Mission</TabsTrigger>
+                <TabsTrigger value="programs" className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-float transition-all duration-300">Programs</TabsTrigger>
+                <TabsTrigger value="story" className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-float transition-all duration-300">Our Story</TabsTrigger>
+                <TabsTrigger value="team" className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-float transition-all duration-300">Team</TabsTrigger>
               </TabsList>
             </div>
 
@@ -56,21 +65,23 @@ export function AboutPage({ programs, initiatives, team }: AboutPageProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto"
+                className="max-w-5xl mx-auto"
               >
-                <div className="prose prose-lg max-w-none">
-                  <h2 className="text-3xl font-heading font-bold text-primary mb-6">
-                    Our Mission and Values
+                <div className="glass-card p-8 md:p-12">
+                  <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8">
+                    <span className="gradient-text">Our Mission and Values</span>
                   </h2>
-                  <p className="text-lg leading-relaxed mb-6">
-                    At Islamic Alliance, our mission is to unite and empower the Ummah by providing
-                    high-quality educational resources, mentorship programs, and networking
-                    opportunities.
-                  </p>
-                  <p className="text-lg leading-relaxed mb-6">
-                    Our vision is a global community where Muslims thrive academically,
-                    professionally, and personally while upholding their faith.
-                  </p>
+                  <div className="space-y-6 text-lg leading-relaxed text-foreground/90">
+                    <p className="text-xl">
+                      At Islamic Alliance, our mission is to unite and empower the Ummah by providing
+                      high-quality educational resources, mentorship programs, and networking
+                      opportunities.
+                    </p>
+                    <p className="text-xl">
+                      Our vision is a global community where Muslims thrive academically,
+                      professionally, and personally while upholding their faith.
+                    </p>
+                  </div>
 
                   {/* Initiatives Section */}
                   {initiatives && initiatives.length > 0 && (

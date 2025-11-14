@@ -23,87 +23,44 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Full-Screen Modern Hero */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-hero-gradient">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-mesh-gradient opacity-30" />
-        <div className="absolute inset-0 bg-[url('/geometric-pattern.svg')] opacity-5" />
-        
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
-        
-        {hero?.logoImage && (
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-          >
-            <div className="relative w-full h-full max-w-2xl max-h-2xl p-12">
-              <Image
-                src={urlForImage(hero.logoImage).url()}
-                alt="Islamic Alliance Logo"
-                fill
-                className="object-contain floating"
-                priority
-              />
-            </div>
-          </motion.div>
-        )}
-        
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          {!hero?.logoImage && (
-            <motion.div 
-              className="mb-12"
-              initial={{ opacity: 0, y: -30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-6xl md:text-8xl font-heading font-bold mb-6">
-                <span className="gradient-text">Islamic Alliance</span>
-              </h1>
-              <div className="h-1 w-32 mx-auto bg-gradient-to-r from-primary via-accent to-primary rounded-full mb-6" />
-              <p className="text-2xl md:text-3xl text-white font-light italic drop-shadow-lg">
-                Ummah in Action
-              </p>
-            </motion.div>
-          )}
-          
-          {/* Glass Info Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-16 glass-card p-8 max-w-2xl mx-auto"
-          >
-            <p className="text-lg text-white/90 leading-relaxed">
-              Empowering the Ummah through education, mentorship, and community
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="animate-bounce mt-16"
-          >
-            <a
-              href="#welcome"
-              className="inline-flex items-center justify-center w-12 h-12 rounded-full glass hover:shadow-glow transition-all duration-300"
-              aria-label="Scroll to content"
-            >
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </a>
-          </motion.div>
+      {/* Full-Screen Hero with Logo Image */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Hero Image Background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-logo.jpg"
+            alt="Islamic Alliance - Ummah in Action"
+            fill
+            className="object-cover"
+            priority
+            quality={100}
+          />
+          {/* Subtle overlay for better readability if needed */}
+          <div className="absolute inset-0 bg-navy/10" />
         </div>
+        
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 animate-bounce"
+        >
+          <a
+            href="#welcome"
+            className="inline-flex items-center justify-center w-14 h-14 rounded-full glass-card hover:shadow-gold-glow transition-all duration-300 group"
+            aria-label="Scroll to content"
+          >
+            <svg className="w-6 h-6 text-gold group-hover:text-gold-light transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </a>
+        </motion.div>
       </section>
 
       {/* Welcome Section */}

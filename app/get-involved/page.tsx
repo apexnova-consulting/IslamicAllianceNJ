@@ -8,51 +8,54 @@ export const metadata = {
 export default function GetInvolvedPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-accent/20 to-primary/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-primary mb-6">
+      {/* Modern Hero Section */}
+      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-navy-dark via-navy to-primary">
+        <div className="absolute inset-0 bg-geometric-pattern opacity-10" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gold/10 rounded-full blur-3xl" style={{animation: 'float 6s ease-in-out infinite'}} />
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl" style={{animation: 'float 6s ease-in-out infinite', animationDelay: '2s'}} />
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-block glass px-6 py-2 rounded-full mb-8">
+              <span className="text-sm font-semibold text-gold">Make A Difference</span>
+            </div>
+            <h1 className="text-6xl md:text-7xl font-heading font-bold text-white mb-8 drop-shadow-lg">
               Get Involved
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Join Us in Building a Better Future
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              At Islamic Alliance, we believe in the power of community. Whether you&apos;re a student, professional, or simply someone who wants to make a difference, there&apos;s a place for you on our team. Join us in our mission to empower the Ummah through education, mentorship, and networking.
-            </p>
+            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-gold via-accent to-gold rounded-full mb-8" />
+            <div className="glass-card p-8 max-w-3xl mx-auto">
+              <p className="text-2xl text-white/90 font-light mb-6">
+                Join Us in Building a Better Future
+              </p>
+              <p className="text-lg text-white/80 leading-relaxed">
+                At Islamic Alliance, we believe in the power of community. Whether you&apos;re a student, professional, or simply someone who wants to make a difference, there&apos;s a place for you on our team.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Form Section */}
-      <section className="py-16 bg-neutral-sand">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-lg p-8 md:p-12 shadow-lg">
-              <h2 className="text-2xl font-heading font-bold text-primary mb-2">
-                Volunteer Application
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-sand/30 to-white" />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="max-w-3xl mx-auto">
+            <div className="glass-card p-8 md:p-12 shadow-elegant mb-12">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                <span className="gradient-text">Volunteer Application</span>
               </h2>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-foreground/80 mb-8 text-lg">
                 Fill out the form below and we&apos;ll get in touch with you about volunteer opportunities.
               </p>
               <VolunteerForm />
             </div>
 
             {/* Benefits Section */}
-            <div className="mt-12 bg-white rounded-lg p-8">
-              <h3 className="text-xl font-heading font-semibold mb-4 text-center">
-                Why Volunteer With Us?
+            <div className="glass-card p-8 md:p-10 shadow-elegant">
+              <h3 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-center">
+                <span className="gradient-text">Why Volunteer With Us?</span>
               </h3>
-              <ul className="space-y-3 text-muted-foreground">
+              <ul className="space-y-4 text-foreground/90">
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
                   <span>Make a meaningful impact in the Muslim community</span>

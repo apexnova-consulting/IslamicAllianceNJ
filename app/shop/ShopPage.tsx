@@ -16,40 +16,51 @@ export function ShopPage({ items }: ShopPageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-accent/20 to-primary/10">
-        <div className="container mx-auto px-4">
+      {/* Modern Hero Section */}
+      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-navy-dark via-navy to-primary">
+        <div className="absolute inset-0 bg-geometric-pattern opacity-10" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-gold/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-primary mb-6">
+            <div className="inline-block glass px-6 py-2 rounded-full mb-8">
+              <span className="text-sm font-semibold text-gold">Merchandise</span>
+            </div>
+            <h1 className="text-6xl md:text-7xl font-heading font-bold text-white mb-8 drop-shadow-lg">
               Shop
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Support Islamic Alliance by purchasing our merchandise
-            </p>
+            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-gold via-accent to-gold rounded-full mb-8" />
+            <div className="glass-card p-8 max-w-3xl mx-auto">
+              <p className="text-xl text-white/90 leading-relaxed">
+                Support Islamic Alliance by purchasing our merchandise
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Shop Items Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-sand/30 to-white" />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           {activeItems.length === 0 ? (
-            <div className="max-w-2xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-neutral-sand rounded-lg p-12"
+                className="glass-card p-12 md:p-16 shadow-elegant"
               >
-                <h2 className="text-3xl font-heading font-bold text-primary mb-4">
-                  Coming Soon!
+                <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+                  <span className="gradient-text">Coming Soon!</span>
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
+                <p className="text-xl text-foreground/90 mb-8 leading-relaxed">
                   We&apos;re working on bringing you high-quality Islamic Alliance merchandise including hoodies, t-shirts, and more. Check back soon!
                 </p>
                 <div className="space-y-4 text-left max-w-md mx-auto">
