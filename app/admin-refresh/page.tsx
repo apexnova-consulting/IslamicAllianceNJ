@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export default function AdminRefreshPage() {
@@ -27,7 +28,7 @@ export default function AdminRefreshPage() {
       } else {
         setMessage('❌ Error refreshing. Please try again or wait a few minutes.');
       }
-    } catch (error) {
+    } catch {
       setMessage('❌ Network error. Please check your connection.');
     } finally {
       setLoading(false);
@@ -52,7 +53,7 @@ export default function AdminRefreshPage() {
       } else {
         setMessage('❌ Error refreshing. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setMessage('❌ Network error. Please check your connection.');
     } finally {
       setLoading(false);
@@ -117,9 +118,9 @@ export default function AdminRefreshPage() {
         <div className="mt-8 pt-8 border-t border-white/20">
           <h3 className="text-lg font-semibold mb-2">📋 How to Use</h3>
           <ol className="text-left space-y-2 text-foreground/80">
-            <li>1. Make changes in <a href="/studio" className="text-accent underline">Sanity Studio</a></li>
-            <li>2. Click "Publish" in Sanity</li>
-            <li>3. Return here and click "Refresh About Page"</li>
+            <li>1. Make changes in <Link href="/studio" className="text-accent underline">Sanity Studio</Link></li>
+            <li>2. Click &quot;Publish&quot; in Sanity</li>
+            <li>3. Return here and click &quot;Refresh About Page&quot;</li>
             <li>4. Wait 5-10 seconds, then check your website</li>
           </ol>
         </div>
