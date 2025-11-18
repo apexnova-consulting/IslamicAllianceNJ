@@ -12,7 +12,7 @@ export const metadata = {
     'Learn about Islamic Alliance, our mission to unite and empower the Ummah, our programs, initiatives, and meet our team.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Page() {
   const [programs, initiatives, team] = await Promise.all([

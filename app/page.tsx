@@ -3,7 +3,7 @@ import { HomePage } from './HomePage';
 import { getHomepageHero, getTiles, getFeaturedEvents } from '@/lib/sanity.queries';
 import { isSanityConfigured } from '@/lib/sanity.client';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Page() {
   // Handle case where Sanity is not configured yet

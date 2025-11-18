@@ -8,7 +8,7 @@ export const metadata = {
     'At Islamic Alliance, we work together to bring educational and networking experiences to our community. View our upcoming events and programs.',
 };
 
-export const revalidate = 1800; // Revalidate every 30 minutes
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Page() {
   const [allEvents, upcomingEvents] = await Promise.all([
