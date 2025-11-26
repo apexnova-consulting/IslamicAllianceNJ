@@ -24,10 +24,10 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
     <div className="min-h-screen">
       {/* Full-Screen Hero with Logo Image */}
       <section 
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-neutral-sand"
         style={{
           backgroundImage: 'url(/hero-logo.jpg)',
-          backgroundSize: 'cover',
+          backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
