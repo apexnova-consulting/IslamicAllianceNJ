@@ -24,7 +24,7 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
     <div className="min-h-screen">
       {/* Full-Screen Hero with Logo Image */}
       <section 
-        className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-neutral-sand"
+        className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-[#1a3a52]"
         style={{
           backgroundImage: 'url(/hero-logo.jpg)',
           backgroundSize: 'contain',
@@ -32,8 +32,6 @@ export function HomePage({ hero, tiles, featuredEvents }: HomePageProps) {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Subtle overlay for better readability if needed */}
-        <div className="absolute inset-0 bg-navy/5" />
         
         {/* Scroll Indicator */}
         <motion.div
