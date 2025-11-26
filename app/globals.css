@@ -66,6 +66,17 @@
   .floating {
     animation: float 6s ease-in-out infinite;
   }
+
+  /* Responsive Hero Background */
+  .hero-bg-responsive {
+    background-size: contain;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-bg-responsive {
+      background-size: cover;
+    }
+  }
 }
 
 @layer base {
