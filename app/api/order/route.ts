@@ -2,18 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { client } from '@/lib/sanity.client';
 import { rateLimit } from '@/lib/rate-limit';
 
-const limiter = rateLimit({
-  interval: 60 * 1000, // 1 minute
-  uniqueTokenPerInterval: 500,
-});
-
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting
     const ip = request.headers.get('x-forwarded-for') || 'anonymous';
-    try {
-      await limiter.check(5, ip); // 5 requests per minute
-    } catch {
+    const allowed = rateLimit(ip, 5, 60000); // 5 requests per minute
+    
+    if (!allowed) {
       return NextResponse.json(
         { error: 'Rate limit exceeded. Please try again later.' },
         { status: 429 }
@@ -34,7 +29,6 @@ export async function POST(request: NextRequest) {
       paymentMethod,
       zelleConfirmation,
       notes,
-      productId,
     } = body;
 
     // Validate required fields

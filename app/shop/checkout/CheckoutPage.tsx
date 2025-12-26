@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import Image from 'next/image';
 
 interface CheckoutPageProps {
   productId?: string;
@@ -62,7 +61,7 @@ export function CheckoutPage({ productId, selectedSize }: CheckoutPageProps) {
         throw new Error('Failed to submit order');
       }
 
-      const result = await response.json();
+      await response.json();
       setOrderSubmitted(true);
 
       // If Zelle payment, show payment instructions

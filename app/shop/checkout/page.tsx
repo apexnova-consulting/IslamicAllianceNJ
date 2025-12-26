@@ -9,13 +9,15 @@ export const metadata = {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { product?: string; size?: string };
+  searchParams: Promise<{ product?: string; size?: string }>;
 }) {
+  const params = await searchParams;
+  
   return (
     <Suspense fallback={<LoadingFallback />}>
       <CheckoutPage 
-        productId={searchParams.product} 
-        selectedSize={searchParams.size}
+        productId={params.product} 
+        selectedSize={params.size}
       />
     </Suspense>
   );
