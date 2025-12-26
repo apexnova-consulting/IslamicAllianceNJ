@@ -23,6 +23,11 @@ function ShopItemCard({ item, imageUrl, index }: ShopItemCardProps) {
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState('');
 
+  // Default sizes if not configured in Sanity
+  const availableSizes = item.sizes && item.sizes.length > 0 
+    ? item.sizes 
+    : ['S', 'M', 'L', 'XL', '2XL', '3XL'];
+
   const handleOrderClick = () => {
     if (!selectedSize) {
       alert('Please select a size before ordering');
@@ -56,27 +61,25 @@ function ShopItemCard({ item, imageUrl, index }: ShopItemCardProps) {
             ${item.price.toFixed(2)}
           </div>
           
-          {item.sizes && item.sizes.length > 0 && (
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Select Size:</label>
-              <div className="grid grid-cols-3 gap-2">
-                {item.sizes.map((size: string) => (
-                  <button
-                    key={size}
-                    type="button"
-                    onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-2 border rounded-md text-sm font-medium transition-colors ${
-                      selectedSize === size
-                        ? 'bg-primary text-white border-primary'
-                        : 'bg-white text-foreground border-input hover:bg-accent'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2">Select Size: *</label>
+            <div className="grid grid-cols-3 gap-2">
+              {availableSizes.map((size: string) => (
+                <button
+                  key={size}
+                  type="button"
+                  onClick={() => setSelectedSize(size)}
+                  className={`px-3 py-2 border rounded-md text-sm font-medium transition-colors ${
+                    selectedSize === size
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-foreground border-input hover:bg-accent'
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
             </div>
-          )}
+          </div>
         </CardContent>
         <CardFooter className="p-6 pt-0 flex-col space-y-3">
           <Button
