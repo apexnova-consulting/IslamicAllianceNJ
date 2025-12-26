@@ -1,14 +1,100 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { urlForImage } from '@/lib/sanity.image';
 
 interface ShopPageProps {
   items: any[];
+}
+
+interface ShopItemCardProps {
+  item: any;
+  imageUrl: string | null;
+  index: number;
+}
+
+function ShopItemCard({ item, imageUrl, index }: ShopItemCardProps) {
+  const router = useRouter();
+  const [selectedSize, setSelectedSize] = useState('');
+
+  const handleOrderClick = () => {
+    if (!selectedSize) {
+      alert('Please select a size before ordering');
+      return;
+    }
+    router.push(`/shop/checkout?product=${item._id}&size=${selectedSize}`);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      viewport={{ once: true }}
+    >
+      <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
+        {imageUrl && (
+          <div className="relative aspect-square bg-neutral-100">
+            <Image
+              src={imageUrl}
+              alt={item.image?.alt || item.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
+        <CardContent className="p-6 flex-grow">
+          <CardTitle className="mb-2">{item.title}</CardTitle>
+          <CardDescription className="mb-4 whitespace-pre-line">{item.description}</CardDescription>
+          <div className="text-2xl font-bold text-primary mb-4">
+            ${item.price.toFixed(2)}
+          </div>
+          
+          {item.sizes && item.sizes.length > 0 && (
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Select Size:</label>
+              <div className="grid grid-cols-3 gap-2">
+                {item.sizes.map((size: string) => (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-3 py-2 border rounded-md text-sm font-medium transition-colors ${
+                      selectedSize === size
+                        ? 'bg-primary text-white border-primary'
+                        : 'bg-white text-foreground border-input hover:bg-accent'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </CardContent>
+        <CardFooter className="p-6 pt-0 flex-col space-y-3">
+          <Button
+            className="w-full"
+            onClick={handleOrderClick}
+            disabled={!item.active}
+          >
+            {item.active ? 'Order Now' : 'Coming Soon'}
+          </Button>
+          {item.active && item.fulfillmentOptions && (
+            <p className="text-xs text-muted-foreground text-center">
+              {item.fulfillmentOptions}
+            </p>
+          )}
+        </CardFooter>
+      </Card>
+    </motion.div>
+  );
 }
 
 export function ShopPage({ items }: ShopPageProps) {
@@ -88,61 +174,15 @@ export function ShopPage({ items }: ShopPageProps) {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {items.map((item: any, index: number) => {
+              {activeItems.map((item: any, index: number) => {
                 const imageUrl = item.image?.asset ? urlForImage(item.image).url() : null;
                 return (
-                  <motion.div
+                  <ShopItemCard
                     key={item._id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-                      {imageUrl && (
-                        <div className="relative aspect-square bg-neutral-100">
-                          <Image
-                            src={imageUrl}
-                            alt={item.image?.alt || item.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      )}
-                      <CardContent className="p-6">
-                        <CardTitle className="mb-2">{item.title}</CardTitle>
-                        <CardDescription className="mb-4">{item.description}</CardDescription>
-                        <div className="text-2xl font-bold text-primary">
-                          ${item.price.toFixed(2)}
-                        </div>
-                        {!item.active && (
-                          <div className="mt-2 text-sm text-muted-foreground">
-                            Currently unavailable
-                          </div>
-                        )}
-                      </CardContent>
-                      <CardFooter className="p-6 pt-0">
-                        <Button
-                          className="w-full"
-                          disabled={!item.active}
-                          asChild={item.active}
-                        >
-                          {item.active ? (
-                            <Link href="/contact">Order Now</Link>
-                          ) : (
-                            <span>Coming Soon</span>
-                          )}
-                        </Button>
-                      </CardFooter>
-                      {item.active && item.fulfillmentOptions && (
-                        <div className="px-6 pb-6">
-                          <p className="text-xs text-muted-foreground">
-                            {item.fulfillmentOptions}
-                          </p>
-                        </div>
-                      )}
-                    </Card>
-                  </motion.div>
+                    item={item}
+                    imageUrl={imageUrl}
+                    index={index}
+                  />
                 );
               })}
             </div>

@@ -51,6 +51,23 @@ export default defineType({
       validation: (Rule) => Rule.required().positive(),
     }),
     defineField({
+      name: 'sizes',
+      title: 'Available Sizes',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Small', value: 'S' },
+          { title: 'Medium', value: 'M' },
+          { title: 'Large', value: 'L' },
+          { title: 'X-Large', value: 'XL' },
+          { title: '2X-Large', value: '2XL' },
+          { title: '3X-Large', value: '3XL' },
+        ],
+      },
+      description: 'Select all available sizes for this product',
+    }),
+    defineField({
       name: 'active',
       title: 'Active',
       type: 'boolean',

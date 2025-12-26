@@ -8,6 +8,7 @@ import teamMember from './teamMember';
 import contactSubmission from './contactSubmission';
 import volunteerSubmission from './volunteerSubmission';
 import shopItem from './shopItem';
+import orderSubmission from './orderSubmission';
 import partner from './partner';
 import page from './page';
 
@@ -22,6 +23,7 @@ export const schemaTypes = [
   contactSubmission,
   volunteerSubmission,
   shopItem,
+  orderSubmission,
   partner,
   page,
 ];
