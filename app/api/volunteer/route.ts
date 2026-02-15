@@ -42,17 +42,79 @@ export async function POST(request: NextRequest) {
     // Save to Sanity
     await createVolunteerSubmission(sanitizedData);
 
-    // Send notification email to admin
+    // Get interest area label for better readability
+    const interestAreaLabels: Record<string, string> = {
+      education: 'Education & Mentorship',
+      events: 'Event Planning & Coordination',
+      outreach: 'Community Outreach',
+      fundraising: 'Fundraising',
+      marketing: 'Marketing & Social Media',
+      technology: 'Technology & Web Development',
+      other: 'Other',
+    };
+    const interestAreaLabel = interestAreaLabels[sanitizedData.interestArea] || sanitizedData.interestArea;
+
+    // Send notification email to admin with HubSpot-friendly format
     await sendEmail({
       to: 'islamicalliance.nj@gmail.com',
-      subject: `New Volunteer Application from ${sanitizedData.fullName}`,
+      subject: `New Volunteer Application: ${sanitizedData.fullName} - ${interestAreaLabel}`,
       html: `
-        <h2>New Volunteer Application</h2>
-        <p><strong>Name:</strong> ${sanitizedData.fullName}</p>
-        <p><strong>Email:</strong> ${sanitizedData.email}</p>
-        ${sanitizedData.phone ? `<p><strong>Phone:</strong> ${sanitizedData.phone}</p>` : ''}
-        <p><strong>Area of Interest:</strong> ${sanitizedData.interestArea}</p>
-        ${sanitizedData.message ? `<p><strong>Message:</strong></p><p>${sanitizedData.message.replace(/\n/g, '<br>')}</p>` : ''}
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #0F5132; border-bottom: 3px solid #C69C6D; padding-bottom: 10px;">
+            🙋 New Volunteer Application
+          </h2>
+          
+          <div style="background-color: #f7f6f3; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #0F5132; margin-top: 0;">Contact Information</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; width: 150px;">Full Name:</td>
+                <td style="padding: 8px 0;">${sanitizedData.fullName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold;">Email:</td>
+                <td style="padding: 8px 0;"><a href="mailto:${sanitizedData.email}" style="color: #0F5132;">${sanitizedData.email}</a></td>
+              </tr>
+              ${sanitizedData.phone ? `
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold;">Phone:</td>
+                <td style="padding: 8px 0;"><a href="tel:${sanitizedData.phone}" style="color: #0F5132;">${sanitizedData.phone}</a></td>
+              </tr>
+              ` : ''}
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold;">Interest Area:</td>
+                <td style="padding: 8px 0; color: #C69C6D; font-weight: bold;">${interestAreaLabel}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold;">Submitted:</td>
+                <td style="padding: 8px 0;">${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET</td>
+              </tr>
+            </table>
+          </div>
+
+          ${sanitizedData.message ? `
+          <div style="background-color: #ffffff; padding: 20px; border-left: 4px solid #C69C6D; margin: 20px 0;">
+            <h3 style="color: #0F5132; margin-top: 0;">Message from Volunteer:</h3>
+            <p style="line-height: 1.6; color: #333;">${sanitizedData.message.replace(/\n/g, '<br>')}</p>
+          </div>
+          ` : ''}
+
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <h3 style="color: #0F5132;">Next Steps:</h3>
+            <ol style="line-height: 1.8; color: #333;">
+              <li>View full details in <a href="https://www.islamicalliancenj.com/studio" style="color: #0F5132; font-weight: bold;">Sanity Studio</a></li>
+              <li>Add to HubSpot CRM (copy details above)</li>
+              <li>Reach out within 24-48 hours to discuss volunteer opportunities</li>
+            </ol>
+          </div>
+
+          <div style="margin-top: 20px; padding: 15px; background-color: #f0f9f5; border-radius: 5px;">
+            <p style="margin: 0; font-size: 12px; color: #666;">
+              <strong>HubSpot Quick Copy:</strong><br>
+              Name: ${sanitizedData.fullName} | Email: ${sanitizedData.email} | Phone: ${sanitizedData.phone || 'N/A'} | Interest: ${interestAreaLabel}
+            </p>
+          </div>
+        </div>
       `,
     });
 
